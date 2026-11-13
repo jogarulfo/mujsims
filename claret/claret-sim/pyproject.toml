@@ -1,0 +1,21 @@
+[project]
+name = "claret-sim"
+version = "0.1.0"
+description = "MuJoCo demo: one I2RT YAM arm unloads parts from a production machine's chute and packs them in a cardboard box, with optional cardboard layer sheets"
+readme = "README.md"
+authors = [
+    { name = "jogarulfo", email = "jorigal56@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "mujoco>=3.16.0",
+    "pillow>=11",
+]
+
+[project.scripts]
+claret-sim = "claret_sim:main"
+claret-sim-assets = "claret_sim:assets_main"
+
+[build-system]
+requires = ["uv_build>=0.12.23,<0.13.0"]
+build-backend = "uv_build"

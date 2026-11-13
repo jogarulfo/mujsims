@@ -1,0 +1,1376 @@
+<mujoco model="claret_packing_cell">
+  <compiler angle="radian"/>
+
+  <option impratio="10" integrator="implicitfast" cone="elliptic"/>
+
+  <size nkey="1"/>
+
+  <statistic extent="1.2" center="0.15 0.35 0.7"/>
+
+  <visual>
+    <global azimuth="215" elevation="-25" offwidth="1920" offheight="1080"/>
+    <quality shadowsize="8192"/>
+    <headlight ambient="0.28 0.28 0.28" diffuse="0.35 0.35 0.35"/>
+    <map shadowclip="2.5"/>
+  </visual>
+
+  <default>
+    <default class="r/main">
+      <default class="r/yam">
+        <joint frictionloss="0.1"/>
+        <general input="pos" biastype="affine" biasprm="0 -1"/>
+        <default class="r/dm4340">
+          <joint armature="0.032"/>
+          <general forcerange="-28 28" gainprm="80" biasprm="0 -80 -5"/>
+        </default>
+        <default class="r/dm4310">
+          <joint armature="0.0018"/>
+          <general forcerange="-10 10" gainprm="10" biasprm="0 -10 -1.5"/>
+        </default>
+        <default class="r/visual">
+          <geom type="mesh" contype="0" conaffinity="0" group="2" density="0" material="black"/>
+        </default>
+        <default class="r/collision">
+          <geom type="capsule" group="3"/>
+          <default class="r/finger_body_collision">
+            <geom type="box" rgba="0.381493 0.492734 0.780446 1"/>
+          </default>
+          <default class="r/finger_collision">
+            <geom type="box" condim="6" priority="1" friction="1 0.005 0.0005" solref="0.01" rgba="0.381493 0.492734 0.780446 1"/>
+          </default>
+        </default>
+        <default class="r/finger">
+          <joint type="slide" range="-0.005 0.0475" armature="0.1" axis="0 0 -1"/>
+          <general ctrlrange="-0.005 0.0475" forcerange="-100 100" gainprm="2000" biasprm="0 -2000 -150"/>
+        </default>
+      </default>
+    </default>
+  </default>
+
+  <asset>
+    <texture type="skybox" colorspace="auto" name="skybox" builtin="gradient" rgb1="0.6 0.66 0.7" rgb2="0.16 0.17 0.19" width="512" height="3072"/>
+    <texture type="2d" colorspace="auto" name="floor" builtin="flat" mark="edge" rgb1="0.42 0.5 0.44" rgb2="0.42 0.5 0.44" markrgb="0.38 0.45 0.4" width="300" height="300"/>
+    <material name="floor" texture="floor" texrepeat="2 2" texuniform="true" specular="0.05" shininess="0.1"/>
+    <material name="machine_blue" shininess="0.6" rgba="0.13 0.42 0.78 1"/>
+    <material name="machine_blue_dark" specular="0.15" shininess="0.2" rgba="0.09 0.3 0.58 1"/>
+    <material name="hood" specular="0.15" shininess="0.2" rgba="0.55 0.42 0.3 1"/>
+    <material name="rubber" specular="0.15" shininess="0.2" rgba="0.1 0.1 0.1 1"/>
+    <material name="steel" shininess="0.6" rgba="0.72 0.74 0.76 1"/>
+    <material name="steel_dark" shininess="0.6" rgba="0.42 0.44 0.47 1"/>
+    <material name="part" specular="0.15" shininess="0.2" rgba="0.07 0.07 0.075 1"/>
+    <material name="cardboard" specular="0.15" shininess="0.2" rgba="0.78 0.62 0.42 1"/>
+    <material name="cardboard_edge" specular="0.15" shininess="0.2" rgba="0.7 0.54 0.35 1"/>
+    <material name="sheet" specular="0.15" shininess="0.2" rgba="0.84 0.7 0.5 1"/>
+    <material name="liner" specular="0.15" shininess="0.2" rgba="0.92 0.94 0.96 0.33"/>
+    <material name="yellow" specular="0.15" shininess="0.2" rgba="0.95 0.78 0.1 1"/>
+    <material name="black" specular="0.15" shininess="0.2" rgba="0.05 0.05 0.05 1"/>
+    <material name="pedestal" specular="0.15" shininess="0.2" rgba="0.3 0.31 0.33 1"/>
+    <material name="sensor" specular="0.15" shininess="0.2" rgba="0.2 0.55 0.95 1"/>
+    <material name="lamp_off" specular="0.15" shininess="0.2" rgba="0.25 0.25 0.25 1"/>
+    <material name="pneumatic" shininess="0.6" rgba="0.78 0.8 0.83 1"/>
+    <material name="lamp_glow" emission="0.8"/>
+    <material name="r/black" rgba="0.25 0.25 0.25 1"/>
+    <material name="r/white" rgba="0.9 0.9 0.9 1"/>
+    <mesh name="bushing" file="meshes/bushing.stl"/>
+    <mesh name="bushing_col" file="meshes/bushing_col.stl"/>
+    <mesh name="bore_seg" file="meshes/bore_seg.stl"/>
+    <mesh name="cup" file="meshes/cup.stl"/>
+    <mesh name="r/model2" file="yam/assets/model2.stl"/>
+    <mesh name="r/model2__2" file="yam/assets/model2__2.stl"/>
+    <mesh name="r/model2__3" file="yam/assets/model2__3.stl"/>
+    <mesh name="r/model2__4" file="yam/assets/model2__4.stl"/>
+    <mesh name="r/model2__5" file="yam/assets/model2__5.stl"/>
+    <mesh name="r/model2__6" file="yam/assets/model2__6.stl"/>
+    <mesh name="r/model2__7" file="yam/assets/model2__7.stl"/>
+    <mesh name="r/model2__8" file="yam/assets/model2__8.stl"/>
+    <mesh name="r/model2__9" file="yam/assets/model2__9.stl"/>
+    <mesh name="r/model2__10" file="yam/assets/model2__10.stl"/>
+    <mesh name="r/model2__11" file="yam/assets/model2__11.stl"/>
+    <mesh name="r/gripper" file="yam/assets/linear_4310/gripper.stl"/>
+    <mesh name="r/tip_left" file="yam/assets/linear_4310/tip_left.stl"/>
+    <mesh name="r/tip_right" file="yam/assets/linear_4310/tip_right.stl"/>
+    <mesh name="r/d405_wrist_linear_4310" file="yam/assets/linear_4310/d405_wrist_linear_4310.stl"/>
+  </asset>
+
+  <worldbody>
+    <geom name="floor" size="4 4 0.05" type="plane" material="floor"/>
+    <camera name="overview" quat="0.784989 0.497888 0.197451 0.311309" pos="1.75 -1.35 1.75"/>
+    <camera name="photo" quat="0.830626 0.443891 0.158453 0.296503" pos="0.95 -0.55 1.65" fovy="55"/>
+    <camera name="front" quat="0.56294 0.384025 0.412434 0.604584" pos="1.55 0.25 1.3" fovy="50"/>
+    <camera name="machine" quat="0.755866 0.573294 0.191098 0.251955" pos="0.75 0.05 1.2" fovy="50"/>
+    <camera name="tray" quat="0.775917 0.399041 0.223454 0.434496" pos="0.62 0.06 1.27" fovy="38"/>
+    <camera name="tray_top" quat="0.983594 0.132721 0.0163387 0.121086" pos="0.05 0.24 1.5"/>
+    <camera name="box" quat="0.822116 0.338739 0.174321 0.423076" pos="0.75 -0.3 1.13" fovy="50"/>
+    <camera name="box_top" quat="0.705895 0.0413805 0.0413805 0.705895" pos="0.43 0 1.43" fovy="40"/>
+    <camera name="box_close" quat="0.923306 0.263317 0.0766781 0.268867" pos="0.57 -0.3 1.24" fovy="42"/>
+    <camera name="magazine" quat="0.812576 0.461293 0.175887 0.309828" pos="0.55 -0.95 1.2"/>
+    <light name="key" pos="0.6 0.4 3" dir="-0.19518 -0.09759 -0.9759" diffuse="0.75 0.75 0.72" specular="0.2 0.2 0.2" type="directional"/>
+    <light name="fill" castshadow="false" pos="2 -1.5 2.2" dir="-0.609208 0.507673 -0.609208" diffuse="0.35 0.35 0.38" type="directional"/>
+    <body name="pedestal">
+      <geom name="pedestal_foot" size="0.2 0.2 0.008" pos="0 0 0.008" type="box" material="pedestal"/>
+      <geom name="pedestal_column" size="0.085 0.39" pos="0 0 0.406" type="cylinder" material="pedestal"/>
+      <geom name="pedestal_top" size="0.11 0.11 0.012" pos="0 0 0.808" type="box" material="pedestal"/>
+      <geom size="0.008 0.006" pos="0.16 0.16 0.022" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+      <geom size="0.008 0.006" pos="0.16 -0.16 0.022" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+      <geom size="0.008 0.006" pos="-0.16 0.16 0.022" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+      <geom size="0.008 0.006" pos="-0.16 -0.16 0.022" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+      <geom size="0.008 0.15" pos="-0.09 -0.09 0.97" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel_dark"/>
+      <geom name="lamp_blue" size="0.022 0.022" pos="-0.09 -0.09 1.15" type="cylinder" contype="0" conaffinity="0" group="2" rgba="0.25 0.25 0.25 1" density="0" material="lamp_glow"/>
+      <geom name="lamp_amber" size="0.022 0.022" pos="-0.09 -0.09 1.196" type="cylinder" contype="0" conaffinity="0" group="2" rgba="0.25 0.25 0.25 1" density="0" material="lamp_glow"/>
+      <geom name="lamp_green" size="0.022 0.022" pos="-0.09 -0.09 1.242" type="cylinder" contype="0" conaffinity="0" group="2" rgba="0.25 0.25 0.25 1" density="0" material="lamp_glow"/>
+      <geom size="0.023 0.006" pos="-0.09 -0.09 1.272" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="black"/>
+    </body>
+    <frame pos="0 0 0.82">
+      <light name="r/spotlight" target="r/link_6" pos="0 0 1" mode="targetbodycom"/>
+      <body name="r/arm" childclass="r/yam">
+        <geom class="r/visual" pos="0 0 -0.0006" quat="0.707107 0 0 0.707107" material="r/black" mesh="r/model2"/>
+        <geom class="r/collision" size="0.033 0.01" pos="0 0 0.026"/>
+        <body name="r/link_1" pos="0 0 0.0631" quat="0.707107 0 0 0.707107">
+          <inertial pos="-0.00192861 -0.00795735 0.0208176" quat="0.297851 0.642634 0.360045 0.607185" mass="0.12415" diaginertia="0.000180751 0.000145532 5.89179e-05"/>
+          <joint name="r/joint1" class="r/dm4340" range="-2.61799 3.14159"/>
+          <geom class="r/visual" pos="5.26159e-07 2.34355e-07 -0.0632" quat="1 0 0 0" material="r/black" mesh="r/model2__2"/>
+          <body name="r/link_2" pos="2.5e-05 -0.02 0.0409" quat="0.5 0.5 0.5 0.5" gravcomp="1">
+            <inertial pos="0.132008 2.10599e-06 0.000293073" quat="0.5 0.5 0.5 0.5" mass="1.24434" diaginertia="0.0121902 0.0121318 0.000683304"/>
+            <joint name="r/joint2" class="r/dm4340" range="0 3.66519"/>
+            <geom class="r/visual" pos="0.0199992 -0.1041 -2.44738e-05" quat="0.5 -0.5 -0.5 -0.5" material="r/black" mesh="r/model2__3"/>
+            <geom class="r/visual" pos="0.0199992 -0.1041 -2.44738e-05" quat="0.5 -0.5 -0.5 -0.5" material="r/black" mesh="r/model2__4"/>
+            <geom class="r/visual" pos="0.0199992 -0.1041 -2.44738e-05" quat="0.5 -0.5 -0.5 -0.5" material="r/white" mesh="r/model2__5"/>
+            <geom class="r/collision" size="0.032 0.11" pos="0.13 0 0" quat="0.707107 0 0.707107 0"/>
+            <geom class="r/collision" size="0.033 0.02"/>
+            <geom class="r/collision" size="0.033 0.025" pos="0.265 0 0"/>
+            <body name="r/link_3" pos="0.264 0 0" quat="0 1 0 0" gravcomp="1">
+              <inertial pos="-0.121816 -0.054846 -0.000111108" quat="0.5 0.5 0.5 0.5" mass="0.853698" diaginertia="0.00699732 0.00696112 0.000788244"/>
+              <joint name="r/joint3" class="r/dm4340" range="0 3.14159"/>
+              <geom class="r/visual" pos="-0.244001 0.104101 2.44738e-05" quat="0.5 0.5 0.5 -0.5" material="r/black" mesh="r/model2__6"/>
+              <geom class="r/visual" pos="-0.244001 0.104101 2.44738e-05" quat="0.5 0.5 0.5 -0.5" material="r/black" mesh="r/model2__7"/>
+              <geom class="r/visual" pos="-0.244001 0.104101 2.44738e-05" quat="0.5 0.5 0.5 -0.5" material="r/white" mesh="r/model2__8"/>
+              <geom class="r/visual" pos="-0.244001 0.104101 2.44738e-05" quat="0.5 0.5 0.5 -0.5" material="r/black" mesh="r/model2__9"/>
+              <geom class="r/collision" size="0.034 0.12" pos="-0.14 -0.06 0" quat="0.707107 0 0.707107 0"/>
+              <geom class="r/collision" size="0.034 0.015" pos="-0.24 -0.06 0"/>
+              <body name="r/link_4" pos="-0.245 -0.06 0" gravcomp="1">
+                <inertial pos="-0.0769778 -0.0527104 0.000154878" quat="0.66661 0.66661 -0.235862 -0.235862" mass="0.463511" diaginertia="0.000791532 0.000744733 0.000282116"/>
+                <joint name="r/joint4" class="r/dm4310" range="-1.69297 1.5708"/>
+                <geom class="r/visual" pos="0.00100023 0.164101 2.44738e-05" quat="0.5 0.5 0.5 -0.5" material="r/black" mesh="r/model2__10"/>
+                <geom class="r/collision" size="0.03 0.015" pos="-0.073 -0.06 0" quat="0.707107 0.707107 0 0"/>
+                <body name="r/link_5" pos="-0.074 -0.0395 2.5e-05" quat="0.5 -0.5 0.5 0.5" gravcomp="1">
+                  <inertial pos="3.64861e-05 0.00025665 0.0353526" mass="0.350962" diaginertia="0.000197802 0.0001775 0.000147402"/>
+                  <joint name="r/joint5" class="r/dm4310" range="-1.5708 1.5708"/>
+                  <geom class="r/visual" pos="0 -0.0749971 0.203601" quat="1.32679e-06 1 0 0" material="r/black" mesh="r/model2__11"/>
+                  <geom class="r/collision" size="0.03 0.015" pos="0 0.025 0.0395" quat="0.707107 0.707107 0 0"/>
+                  <body name="r/link_6" pos="0 0.0353 0.0395" quat="0.707107 -0.707107 0 0" gravcomp="1">
+                    <inertial pos="-0.000249374 3.57092e-05 0.0293138" quat="-0.52923 -0.466092 0.478576 0.523105" mass="0.553219" diaginertia="0.000409686 0.000369758 0.000324415"/>
+                    <joint name="r/joint6" class="r/dm4310" range="-2.0944 2.0944"/>
+                    <geom class="r/collision" size="0.03 0.005" pos="0 0 0.03" quat="0.707107 0 0 0.707107"/>
+                    <site name="r/tcp_site" quat="0.707107 0 0 -0.707107" group="4" rgba="1 0 0 1"/>
+                    <site name="r/grasp_site" pos="0 0 0.1347" quat="0.707107 0 0 -0.707107" group="4" rgba="0 1 0 1"/>
+                    <site name="r/grip_site" size="0.004" pos="0 0 0.1737" quat="0.707107 0 0 -0.707107" group="4"/>
+                    <frame quat="0 0.707107 -0.707107 0">
+                      <geom class="r/visual" pos="-0.014 -0.0463995 0.0731" quat="1 0 0 0" material="r/black" mesh="r/gripper"/>
+                      <geom name="r/gripper_housing" class="r/collision" size="0.0325 0.051 0.0095" pos="0 0 -0.054" type="box"/>
+                      <body name="r/left_finger" pos="-0.0238981 0.0450619 -0.0545599" quat="0.499998 -0.5 -0.5 -0.500002" gravcomp="1">
+                        <inertial pos="-0.0224716 0.0143408 -0.0426253" quat="0.498899 0.455348 -0.0576406 0.735143" mass="0.0710042" diaginertia="6.24193e-05 6.01079e-05 2.83591e-05"/>
+                        <joint name="r/left_finger" class="r/finger"/>
+                        <geom class="r/visual" pos="0.129783 0.00999321 -0.0914614" quat="0.499998 0.5 0.500002 0.5" material="r/black" mesh="r/tip_left"/>
+                        <frame pos="0.0545598 0.0238985 -0.0450618" quat="0.499998 0.5 0.5 0.500002">
+                          <geom name="r/left_rail_base" class="r/finger_body_collision" size="0.01 0.0247 0.0102" pos="-0.0238 0.0235 -0.0612"/>
+                          <geom name="r/left_rail_lip" class="r/finger_body_collision" size="0.0028 0.0247 0.0058" pos="-0.011 0.0235 -0.0568"/>
+                          <geom name="r/left_carriage" class="r/finger_body_collision" size="0.0232 0.0104 0.0032" pos="-0.0106 -0.0126 -0.0686"/>
+                          <geom name="r/left_base_plate" class="r/finger_body_collision" size="0.0335 0.0101 0.0032" pos="0 -0.0127 -0.0744"/>
+                          <geom name="r/left_base_web" class="r/finger_body_collision" size="0.0215 0.0053 0.0038" pos="0 -0.0077 -0.0812"/>
+                          <geom name="r/left_strut_top" class="r/finger_body_collision" size="0.0052 0.0026 0.0295" pos="0.0183 -0.0044 -0.1027" quat="0.981865 0.0294301 0.187201 0.00561003"/>
+                          <geom name="r/left_tip_bevel_top" class="r/finger_body_collision" size="0.0052 0.0012 0.0189" pos="0.0097 -0.0055 -0.124" quat="-0.0197799 0.181979 -0.10624 0.977346"/>
+                          <geom name="r/left_strut_top_back" class="r/finger_body_collision" size="0.0052 0.0035 0.0227" pos="0.021 -0.0124 -0.0944" quat="-0.0320301 0.172781 -0.179461 0.967944"/>
+                          <geom name="r/left_strut_bot" class="r/finger_body_collision" size="0.0052 0.0026 0.0295" pos="-0.0183 -0.0044 -0.1027" quat="0.981865 0.0294301 -0.187201 -0.00561003"/>
+                          <geom name="r/left_tip_bevel_bot" class="r/finger_body_collision" size="0.0052 0.0012 0.0189" pos="-0.0097 -0.0055 -0.124" quat="0.0197799 -0.181979 -0.10624 0.977346"/>
+                          <geom name="r/left_strut_bot_back" class="r/finger_body_collision" size="0.0052 0.0035 0.0227" pos="-0.021 -0.0124 -0.0944" quat="0.0320301 -0.172781 -0.179461 0.967944"/>
+                          <geom name="r/left_pad_edge_a" class="r/finger_body_collision" size="0.003 0.0017 0.0088" pos="0.0078 -0.0017 -0.134" quat="0.982362 0 0.18699 0"/>
+                          <geom name="r/left_pad_edge_b" class="r/finger_body_collision" size="0.003 0.0017 0.0088" pos="-0.0078 -0.0017 -0.134" quat="0.982362 0 -0.18699 0"/>
+                          <body name="r/left_pad" gravcomp="1">
+                            <geom name="r/left_pad" class="r/finger_collision" size="0.0072 0.0017 0.0082" pos="0 -0.0017 -0.1362"/>
+                            <geom name="r/left_jaw" size="0.005 0.002 0.027" pos="0 -0.002 -0.1597" type="box" contype="4" conaffinity="4" condim="6" group="3" priority="2" friction="1 0.01 0.002" rgba="0.7 0.7 0.7 1" density="2700"/>
+                            <geom size="0.005 0.002 0.027" pos="0 -0.002 -0.1597" type="box" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+                            <geom size="0.004 0.0004 0.013" pos="0 -0.0044 -0.1737" type="box" contype="0" conaffinity="0" group="2" density="0" material="rubber"/>
+                            <geom size="0.007 0.004 0.004" pos="0 -0.003 -0.1307" type="box" contype="0" conaffinity="0" group="2" density="0" material="steel_dark"/>
+                          </body>
+                        </frame>
+                      </body>
+                      <body name="r/right_finger" pos="0.0238981 -0.0450619 -0.0545599" quat="0.707105 0.707108 0 0" gravcomp="1">
+                        <inertial pos="-0.0143408 -0.0224716 -0.0426253" quat="0.281222 0.8726 0.16705 -0.362738" mass="0.0710042" diaginertia="6.24193e-05 6.01079e-05 2.83591e-05"/>
+                        <joint name="r/right_finger" class="r/finger"/>
+                        <geom class="r/visual" pos="-0.0379932 0.129783 0.00133753" quat="0.707105 -0.707108 0 0" material="r/black" mesh="r/tip_right"/>
+                        <frame pos="-0.0238981 0.0545597 -0.0450621" quat="0.707105 -0.707108 0 0">
+                          <frame quat="0 0 0 1">
+                            <geom name="r/right_rail_base" class="r/finger_body_collision" size="0.01 0.0247 0.0102" pos="-0.0238 0.0235 -0.0612"/>
+                            <geom name="r/right_rail_lip" class="r/finger_body_collision" size="0.0028 0.0247 0.0058" pos="-0.011 0.0235 -0.0568"/>
+                            <geom name="r/right_carriage" class="r/finger_body_collision" size="0.0232 0.0104 0.0032" pos="-0.0106 -0.0126 -0.0686"/>
+                            <geom name="r/right_base_plate" class="r/finger_body_collision" size="0.0335 0.0101 0.0032" pos="0 -0.0127 -0.0744"/>
+                            <geom name="r/right_base_web" class="r/finger_body_collision" size="0.0215 0.0053 0.0038" pos="0 -0.0077 -0.0812"/>
+                            <geom name="r/right_strut_top" class="r/finger_body_collision" size="0.0052 0.0026 0.0295" pos="0.0183 -0.0044 -0.1027" quat="0.981865 0.0294301 0.187201 0.00561003"/>
+                            <geom name="r/right_tip_bevel_top" class="r/finger_body_collision" size="0.0052 0.0012 0.0189" pos="0.0097 -0.0055 -0.124" quat="-0.0197799 0.181979 -0.10624 0.977346"/>
+                            <geom name="r/right_strut_top_back" class="r/finger_body_collision" size="0.0052 0.0035 0.0227" pos="0.021 -0.0124 -0.0944" quat="-0.0320301 0.172781 -0.179461 0.967944"/>
+                            <geom name="r/right_strut_bot" class="r/finger_body_collision" size="0.0052 0.0026 0.0295" pos="-0.0183 -0.0044 -0.1027" quat="0.981865 0.0294301 -0.187201 -0.00561003"/>
+                            <geom name="r/right_tip_bevel_bot" class="r/finger_body_collision" size="0.0052 0.0012 0.0189" pos="-0.0097 -0.0055 -0.124" quat="0.0197799 -0.181979 -0.10624 0.977346"/>
+                            <geom name="r/right_strut_bot_back" class="r/finger_body_collision" size="0.0052 0.0035 0.0227" pos="-0.021 -0.0124 -0.0944" quat="0.0320301 -0.172781 -0.179461 0.967944"/>
+                            <geom name="r/right_pad_edge_a" class="r/finger_body_collision" size="0.003 0.0017 0.0088" pos="0.0078 -0.0017 -0.134" quat="0.982362 0 0.18699 0"/>
+                            <geom name="r/right_pad_edge_b" class="r/finger_body_collision" size="0.003 0.0017 0.0088" pos="-0.0078 -0.0017 -0.134" quat="0.982362 0 -0.18699 0"/>
+                            <body name="r/right_pad" gravcomp="1">
+                              <geom name="r/right_pad" class="r/finger_collision" size="0.0072 0.0017 0.0082" pos="0 -0.0017 -0.1362"/>
+                              <geom name="r/right_jaw" size="0.005 0.002 0.027" pos="0 -0.002 -0.1597" type="box" contype="4" conaffinity="4" condim="6" group="3" priority="2" friction="1 0.01 0.002" rgba="0.7 0.7 0.7 1" density="2700"/>
+                              <geom size="0.005 0.002 0.027" pos="0 -0.002 -0.1597" type="box" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+                              <geom size="0.004 0.0004 0.013" pos="0 -0.0044 -0.1737" type="box" contype="0" conaffinity="0" group="2" density="0" material="rubber"/>
+                              <geom size="0.007 0.004 0.004" pos="0 -0.003 -0.1307" type="box" contype="0" conaffinity="0" group="2" density="0" material="steel_dark"/>
+                            </body>
+                          </frame>
+                        </frame>
+                      </body>
+                    </frame>
+                    <geom name="cup_barrel" size="0.011 0.05485" pos="0 -0.062 -0.00015" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="pneumatic"/>
+                    <geom size="0.013 0.003" pos="0 -0.062 -0.052" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="black"/>
+                    <geom size="0.012 0.016 0.006" pos="0 -0.042 0.03" type="box" contype="0" conaffinity="0" group="2" density="0" material="steel_dark"/>
+                    <geom size="0.0022 0.0225167" pos="0.013 -0.079 -0.068" quat="0.936749 -0.308167 -0.165936 0" type="capsule" contype="0" conaffinity="0" group="2" rgba="0.15 0.35 0.75 1" density="0"/>
+                    <body name="cup" pos="0 -0.062 0.1047" gravcomp="1">
+                      <inertial pos="0 0 -0.03" mass="0.05" diaginertia="2e-05 2e-05 1e-05"/>
+                      <joint name="cup_slide" type="slide" range="0 0.092" armature="0.01" damping="2"/>
+                      <geom quat="0 1 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="black" mesh="cup"/>
+                      <geom size="0.005 0.065" pos="0 0 -0.095" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+                      <geom name="cup_lip" size="0.022 0.003" pos="0 0 -0.003" type="cylinder" group="3" friction="1 0.01 0.001" rgba="0.1 0.1 0.1 1"/>
+                      <site name="cup_site" size="0.004" group="4"/>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </frame>
+    <body name="machine">
+      <geom size="0.475 0.425 0.875" pos="0 1.525 0.875" type="box" contype="0" conaffinity="0" group="2" density="0" material="machine_blue"/>
+      <geom size="0.26 0.07 0.3" pos="0 1.1 1.33379" type="box" contype="0" conaffinity="0" group="2" density="0" material="machine_blue"/>
+      <geom size="0.2 0.004 0.18" pos="0 1.026 1.29379" type="box" contype="0" conaffinity="0" group="2" density="0" material="hood"/>
+      <geom size="0.025 0.012 0.022" pos="0 1.01 1.33379" type="box" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+      <geom size="0.012 0.01 0.012" pos="-0.02 1.018 1.33379" type="box" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+      <geom size="0.012 0.01 0.012" pos="0.02 1.018 1.33379" type="box" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+      <geom size="0.008 0.008 0.025" pos="-0.205 1.022 1.41379" type="box" contype="0" conaffinity="0" group="2" density="0" material="steel_dark"/>
+      <geom size="0.008 0.008 0.025" pos="0.205 1.022 1.41379" type="box" contype="0" conaffinity="0" group="2" density="0" material="steel_dark"/>
+      <geom size="0.045 0.002 0.06" pos="-0.3 1.098 1.38379" type="box" contype="0" conaffinity="0" group="2" density="0" material="yellow"/>
+      <geom size="0.03 0.003 0.012" pos="-0.3 1.096 1.36379" type="box" contype="0" conaffinity="0" group="2" density="0" material="black"/>
+      <geom size="0.09 0.07 0.12" pos="0.36 1.03 1.11379" type="box" contype="0" conaffinity="0" group="2" density="0" material="machine_blue_dark"/>
+      <geom size="0.012 0.006" pos="0.33 0.958 1.13379" quat="0.707107 0.707107 0 0" type="cylinder" contype="0" conaffinity="0" group="2" rgba="0.1 0.8 0.2 1" density="0"/>
+      <geom size="0.012 0.006" pos="0.38 0.958 1.13379" quat="0.707107 0.707107 0 0" type="cylinder" contype="0" conaffinity="0" group="2" rgba="0.9 0.1 0.1 1" density="0"/>
+      <geom name="outlet_cheek_r" size="0.04 0.1 0.09" pos="-0.21 1.08 0.953793" type="box" material="machine_blue"/>
+      <geom name="outlet_cheek_l" size="0.04 0.1 0.09" pos="0.21 1.08 0.953793" type="box" material="machine_blue"/>
+      <geom size="0.26 0.1 0.02" pos="0 1.08 1.02879" type="box" contype="0" conaffinity="0" group="2" density="0" material="machine_blue"/>
+      <geom size="0.26 0.15 0.281896" pos="0 1.05 0.575896" type="box" contype="0" conaffinity="0" group="2" density="0" material="machine_blue"/>
+      <geom size="0.1 0.004 0.05" pos="0.1 0.896 0.683793" type="box" contype="0" conaffinity="0" group="2" density="0" material="steel_dark"/>
+      <geom name="outlet_plate" size="0.17 0.1 0.005" pos="0 1.08 0.858793" type="box" priority="1" friction="0.14" material="steel"/>
+      <geom name="outlet_back" size="0.17 0.01 0.06" pos="0 1.19 0.923793" type="box" material="steel_dark"/>
+      <geom size="0.17 0.012 0.008" pos="0 1.01 1.02179" type="box" contype="0" conaffinity="0" group="2" density="0" material="steel_dark"/>
+      <body name="ejector" pos="0 1.1635 0.863793">
+        <inertial pos="0 0.05 0.03" mass="0.3" diaginertia="0.001 0.0001 0.001"/>
+        <joint name="ejector" type="slide" range="0 0.18" armature="0.05" damping="5" axis="0 -1 0"/>
+        <geom name="ejector_plate" size="0.158 0.006 0.022" pos="0 0 0.034" type="box" priority="1" friction="0.3" material="steel_dark"/>
+        <geom size="0.008 0.097" pos="-0.08 0.103 0.03" quat="0.707107 0.707107 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+        <geom size="0.008 0.097" pos="0.08 0.103 0.03" quat="0.707107 0.707107 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+      </body>
+    </body>
+    <body name="curtain_0" pos="-0.14 1.01 1.01379">
+      <joint name="curtain_0" stiffness="0.02" range="-1.3 1.3" armature="0.0001" damping="0.004" axis="1 0 0"/>
+      <geom name="curtain_0_strip" size="0.019 0.0015 0.0675" pos="0 0 -0.0675" type="box" contype="2" conaffinity="2" priority="3" friction="0.05" density="1200" material="rubber"/>
+    </body>
+    <body name="curtain_1" pos="-0.1 1.01 1.01379">
+      <joint name="curtain_1" stiffness="0.02" range="-1.3 1.3" armature="0.0001" damping="0.004" axis="1 0 0"/>
+      <geom name="curtain_1_strip" size="0.019 0.0015 0.0675" pos="0 0 -0.0675" type="box" contype="2" conaffinity="2" priority="3" friction="0.05" density="1200" material="rubber"/>
+    </body>
+    <body name="curtain_2" pos="-0.06 1.01 1.01379">
+      <joint name="curtain_2" stiffness="0.02" range="-1.3 1.3" armature="0.0001" damping="0.004" axis="1 0 0"/>
+      <geom name="curtain_2_strip" size="0.019 0.0015 0.0675" pos="0 0 -0.0675" type="box" contype="2" conaffinity="2" priority="3" friction="0.05" density="1200" material="rubber"/>
+    </body>
+    <body name="curtain_3" pos="-0.02 1.01 1.01379">
+      <joint name="curtain_3" stiffness="0.02" range="-1.3 1.3" armature="0.0001" damping="0.004" axis="1 0 0"/>
+      <geom name="curtain_3_strip" size="0.019 0.0015 0.0675" pos="0 0 -0.0675" type="box" contype="2" conaffinity="2" priority="3" friction="0.05" density="1200" material="rubber"/>
+    </body>
+    <body name="curtain_4" pos="0.02 1.01 1.01379">
+      <joint name="curtain_4" stiffness="0.02" range="-1.3 1.3" armature="0.0001" damping="0.004" axis="1 0 0"/>
+      <geom name="curtain_4_strip" size="0.019 0.0015 0.0675" pos="0 0 -0.0675" type="box" contype="2" conaffinity="2" priority="3" friction="0.05" density="1200" material="rubber"/>
+    </body>
+    <body name="curtain_5" pos="0.06 1.01 1.01379">
+      <joint name="curtain_5" stiffness="0.02" range="-1.3 1.3" armature="0.0001" damping="0.004" axis="1 0 0"/>
+      <geom name="curtain_5_strip" size="0.019 0.0015 0.0675" pos="0 0 -0.0675" type="box" contype="2" conaffinity="2" priority="3" friction="0.05" density="1200" material="rubber"/>
+    </body>
+    <body name="curtain_6" pos="0.1 1.01 1.01379">
+      <joint name="curtain_6" stiffness="0.02" range="-1.3 1.3" armature="0.0001" damping="0.004" axis="1 0 0"/>
+      <geom name="curtain_6_strip" size="0.019 0.0015 0.0675" pos="0 0 -0.0675" type="box" contype="2" conaffinity="2" priority="3" friction="0.05" density="1200" material="rubber"/>
+    </body>
+    <body name="curtain_7" pos="0.14 1.01 1.01379">
+      <joint name="curtain_7" stiffness="0.02" range="-1.3 1.3" armature="0.0001" damping="0.004" axis="1 0 0"/>
+      <geom name="curtain_7_strip" size="0.019 0.0015 0.0675" pos="0 0 -0.0675" type="box" contype="2" conaffinity="2" priority="3" friction="0.05" density="1200" material="rubber"/>
+    </body>
+    <body name="chute">
+      <geom name="chute_floor" size="0.17 0.354867 0.002" pos="0 0.63033 0.80325" quat="0.996566 0.0828082 0 0" type="box" priority="1" friction="0.14" material="steel"/>
+      <geom name="tray_wall_r" size="0.002 0.354867 0.04" pos="-0.172 0.623398 0.844674" quat="0.996566 0.0828082 0 0" type="box" priority="1" friction="0.14" material="steel"/>
+      <geom size="0.004 0.354594" pos="-0.172 0.616796 0.885799" quat="0.647898 0.761727 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+      <geom name="tray_wall_l" size="0.002 0.354867 0.04" pos="0.172 0.623398 0.844674" quat="0.996566 0.0828082 0 0" type="box" priority="1" friction="0.14" material="steel"/>
+      <geom size="0.004 0.354594" pos="0.172 0.616796 0.885799" quat="0.647898 0.761727 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+      <geom size="0.174 0.004 0.015" pos="0 0.284376 0.758538" quat="0.996566 0.0828082 0 0" type="box" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+      <geom name="end_stop" size="0.17 0.005 0.012" pos="0 0.292758 0.762983" quat="0.996566 0.0828082 0 0" type="box" priority="2" friction="0.6" solref="0.03 0.7" material="rubber"/>
+      <geom name="full_eye_rx" size="0.008 0.012 0.015" pos="-0.182 0.875049 0.876647" quat="0.996566 0.0828082 0 0" type="box" contype="0" conaffinity="0" group="2" density="0" material="sensor"/>
+      <geom name="full_eye_tx" size="0.008 0.012 0.015" pos="0.182 0.875049 0.876647" quat="0.996566 0.0828082 0 0" type="box" contype="0" conaffinity="0" group="2" density="0" material="sensor"/>
+      <geom size="0.012 0.65" pos="-0.24 0.42 0.65" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel_dark"/>
+      <geom size="0.008 0.08" pos="-0.16 0.42 1.29" quat="0.707107 0 -0.707107 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel_dark"/>
+      <geom size="0.03 0.022 0.018" pos="-0.07 0.42 1.27" type="box" contype="0" conaffinity="0" group="2" density="0" material="black"/>
+      <geom size="0.01 0.004" pos="-0.07 0.42 1.25" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="sensor"/>
+      <geom size="0.014 0.37551" pos="-0.15 0.33 0.37551" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="machine_blue"/>
+      <geom size="0.025 0.004" pos="-0.15 0.33 0.004" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel_dark"/>
+      <geom size="0.014 0.37551" pos="0.15 0.33 0.37551" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="machine_blue"/>
+      <geom size="0.025 0.004" pos="0.15 0.33 0.004" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel_dark"/>
+      <geom size="0.01 0.15" pos="0 0.33 0.25" quat="0.707107 0 -0.707107 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="machine_blue"/>
+      <geom size="0.014 0.423203" pos="-0.15 0.9 0.423203" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="machine_blue"/>
+      <geom size="0.025 0.004" pos="-0.15 0.9 0.004" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel_dark"/>
+      <geom size="0.014 0.423203" pos="0.15 0.9 0.423203" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="machine_blue"/>
+      <geom size="0.025 0.004" pos="0.15 0.9 0.004" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel_dark"/>
+      <geom size="0.01 0.15" pos="0 0.9 0.25" quat="0.707107 0 -0.707107 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="machine_blue"/>
+      <geom size="0.01 0.285" pos="-0.15 0.615 0.25" quat="0.707107 0.707107 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="machine_blue"/>
+      <geom size="0.01 0.285" pos="0.15 0.615 0.25" quat="0.707107 0.707107 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="machine_blue"/>
+      <geom size="0.14 0.1 0.004" pos="0 0.615 0.26" type="box" contype="0" conaffinity="0" group="2" density="0" material="steel_dark"/>
+    </body>
+    <body name="carton_stand">
+      <geom size="0.016 0.272" pos="0.174 -0.1775 0.272" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel_dark"/>
+      <geom size="0.016 0.272" pos="0.174 0.1775 0.272" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel_dark"/>
+      <geom size="0.016 0.272" pos="0.486 -0.1775 0.272" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel_dark"/>
+      <geom size="0.016 0.272" pos="0.486 0.1775 0.272" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel_dark"/>
+      <geom size="0.176 0.02 0.02" pos="0.33 -0.1775 0.529" type="box" contype="0" conaffinity="0" group="2" density="0" material="steel_dark"/>
+      <geom size="0.176 0.02 0.02" pos="0.33 0.1775 0.529" type="box" contype="0" conaffinity="0" group="2" density="0" material="steel_dark"/>
+      <geom size="0.016 0.146" pos="0.33 -0.1575 0.558" quat="0.707107 0 0.707107 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+      <geom size="0.016 0.146" pos="0.33 -0.118125 0.558" quat="0.707107 0 0.707107 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+      <geom size="0.016 0.146" pos="0.33 -0.07875 0.558" quat="0.707107 0 0.707107 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+      <geom size="0.016 0.146" pos="0.33 -0.039375 0.558" quat="0.707107 0 0.707107 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+      <geom size="0.016 0.146" pos="0.33 0 0.558" quat="0.707107 0 0.707107 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+      <geom size="0.016 0.146" pos="0.33 0.039375 0.558" quat="0.707107 0 0.707107 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+      <geom size="0.016 0.146" pos="0.33 0.07875 0.558" quat="0.707107 0 0.707107 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+      <geom size="0.016 0.146" pos="0.33 0.118125 0.558" quat="0.707107 0 0.707107 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+      <geom size="0.016 0.146" pos="0.33 0.1575 0.558" quat="0.707107 0 0.707107 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="steel"/>
+      <geom size="0.01 0.1975 0.03" pos="0.516 0 0.584" type="box" contype="0" conaffinity="0" group="2" density="0" material="yellow"/>
+    </body>
+    <body name="carton" pos="0.33 0 0.58">
+      <geom size="0.136 0.1675 0.003" pos="0 0 -0.003" type="box" contype="0" conaffinity="0" group="2" density="0" material="cardboard"/>
+      <geom name="carton_floor" size="0.136 0.1675 0.015" pos="0 0 -0.015" type="box" group="3" friction="0.5" rgba="0 0 0 0"/>
+      <geom name="carton_wall_x-" size="0.003 0.1675 0.11" pos="-0.133 0 0.11" type="box" material="cardboard"/>
+      <geom name="carton_wall_y-" size="0.13 0.003 0.11" pos="0 -0.1645 0.11" type="box" material="cardboard"/>
+      <geom name="carton_wall_x+" size="0.003 0.1675 0.11" pos="0.133 0 0.11" type="box" material="cardboard"/>
+      <geom name="carton_wall_y+" size="0.13 0.003 0.11" pos="0 0.1645 0.11" type="box" material="cardboard"/>
+      <geom size="0.1635 0.002 0.065" pos="-0.158086 0 0.158181" quat="-0.110616 0.698401 0.698401 -0.110616" type="box" contype="0" conaffinity="0" group="2" density="0" material="cardboard_edge"/>
+      <geom size="0.132 0.002 0.065" pos="0 -0.189586 0.158181" quat="0.156434 0.987688 0 0" type="box" contype="0" conaffinity="0" group="2" density="0" material="cardboard_edge"/>
+      <geom size="0.1635 0.002 0.065" pos="0.158086 0 0.158181" quat="0.110616 0.698401 0.698401 0.110616" type="box" contype="0" conaffinity="0" group="2" density="0" material="cardboard_edge"/>
+      <geom size="0.132 0.002 0.065" pos="0 0.189586 0.158181" quat="-0.156434 0.987688 0 0" type="box" contype="0" conaffinity="0" group="2" density="0" material="cardboard_edge"/>
+      <geom size="0.0008 0.1615 0.11" pos="-0.1288 0 0.11" type="box" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.13 0.0008 0.11" pos="0 -0.1603 0.11" type="box" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.0008 0.1615 0.11" pos="0.1288 0 0.11" type="box" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.13 0.0008 0.11" pos="0 0.1603 0.11" type="box" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.0008 0.04154 0.0814025" pos="-0.171462 -0.1292 0.154052" quat="0.988488 0.0409001 0.145538 -0.00602186" type="box" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.0008 0.04154 0.0605058" pos="-0.159704 -0.0646 0.172637" quat="0.993705 0.0557387 0.0970213 -0.00544209" type="box" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.0008 0.04154 0.078743" pos="-0.159059 0 0.154037" quat="0.996529 0.0444351 0.0703283 -0.00313593" type="box" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.0008 0.04154 0.0606061" pos="-0.163227 0.0646 0.173338" quat="0.991401 -0.0329625 0.126571 0.00420829" type="box" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.0008 0.04154 0.0655777" pos="-0.161151 0.1292 0.167754" quat="0.994909 0.000678765 0.10078 -6.8756e-05" type="box" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.04216 0.0008 0.0848425" pos="-0.096 -0.202528 0.150342" quat="0.989616 -0.136871 0.0434714 -0.00601242" type="box" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.04216 0.0008 0.0846136" pos="-0.028 -0.203829 0.15096" quat="0.988484 -0.145178 -0.0422376 0.00620341" type="box" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.04216 0.0008 0.0714389" pos="0.04 -0.192203 0.1617" quat="0.993678 -0.089059 -0.0680825 0.00610193" type="box" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.04216 0.0008 0.0680211" pos="0.108 -0.189554 0.164726" quat="0.997238 -0.0741034 -0.00505514 0.00037564" type="box" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.009 0.1675" pos="-0.133 0 0.224" quat="0.707107 0.707107 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.009 0.136" pos="0 -0.1645 0.224" quat="0.707107 0 -0.707107 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.0008 0.04154 0.0720229" pos="0.173623 -0.1292 0.164689" quat="0.983506 0.00208272 -0.180865 0.000383009" type="box" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.0008 0.04154 0.058663" pos="0.16314 -0.0646 0.175324" quat="0.988837 -0.0725432 -0.129799 -0.0095223" type="box" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.0008 0.04154 0.0742211" pos="0.161772 0 0.159068" quat="0.994645 -0.0446986 -0.0930902 -0.0041834" type="box" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.0008 0.04154 0.0501307" pos="0.159425 0.0646 0.183189" quat="0.992182 0.0491603 -0.114567 0.00567652" type="box" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.0008 0.04154 0.059366" pos="0.158475 0.1292 0.173565" quat="0.99445 0.0567948 -0.0884239 0.00505005" type="box" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.04216 0.0008 0.0796503" pos="-0.096 0.200299 0.155113" quat="0.99107 0.131683 0.0207735 0.00276016" type="box" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.04216 0.0008 0.0532023" pos="-0.028 0.19628 0.181513" quat="0.987139 0.159747 0.00609228 0.000985904" type="box" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.04216 0.0008 0.0804969" pos="0.04 0.200482 0.154286" quat="0.991106 0.131439 -0.0206283 -0.00273569" type="box" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.04216 0.0008 0.0520738" pos="0.108 0.19418 0.182038" quat="0.989667 0.142389 -0.0166826 -0.00240023" type="box" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.009 0.1675" pos="0.133 0 0.224" quat="0.707107 0.707107 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+      <geom size="0.009 0.136" pos="0 0.1645 0.224" quat="0.707107 0 -0.707107 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="liner"/>
+    </body>
+    <body name="magazine">
+      <geom name="magazine_tray" size="0.1835 0.152 0.006" pos="-0.06 -0.33 0.654" type="box" material="steel_dark"/>
+      <geom size="0.014 0.324" pos="-0.1935 -0.432 0.324" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="machine_blue"/>
+      <geom size="0.002 0.03 0.04" pos="-0.2215 -0.432 0.7" type="box" material="steel"/>
+      <geom size="0.03 0.002 0.04" pos="-0.1935 -0.46 0.7" type="box" material="steel"/>
+      <geom size="0.014 0.324" pos="-0.1935 -0.228 0.324" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="machine_blue"/>
+      <geom size="0.002 0.03 0.04" pos="-0.2215 -0.228 0.7" type="box" material="steel"/>
+      <geom size="0.03 0.002 0.04" pos="-0.1935 -0.2 0.7" type="box" material="steel"/>
+      <geom size="0.014 0.324" pos="0.0735 -0.432 0.324" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="machine_blue"/>
+      <geom size="0.002 0.03 0.04" pos="0.1015 -0.432 0.7" type="box" material="steel"/>
+      <geom size="0.03 0.002 0.04" pos="0.0735 -0.46 0.7" type="box" material="steel"/>
+      <geom size="0.014 0.324" pos="0.0735 -0.228 0.324" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" group="2" density="0" material="machine_blue"/>
+      <geom size="0.002 0.03 0.04" pos="0.1015 -0.228 0.7" type="box" material="steel"/>
+      <geom size="0.03 0.002 0.04" pos="0.0735 -0.2 0.7" type="box" material="steel"/>
+    </body>
+    <body name="sheet_0" pos="-0.06 -0.33 0.6615">
+      <joint name="sheet_0_free" type="free"/>
+      <geom name="sheet_0_geom" size="0.1535 0.122 0.0015" type="box" friction="0.5" mass="0.06" material="sheet"/>
+      <geom size="0.1535 0.0006 0.0009" pos="0 0.122 0" type="box" contype="0" conaffinity="0" group="2" density="0" material="cardboard_edge"/>
+      <geom size="0.1535 0.0006 0.0009" pos="0 -0.122 0" type="box" contype="0" conaffinity="0" group="2" density="0" material="cardboard_edge"/>
+    </body>
+    <body name="sheet_1" pos="-0.06 -0.33 0.6647">
+      <joint name="sheet_1_free" type="free"/>
+      <geom name="sheet_1_geom" size="0.1535 0.122 0.0015" type="box" friction="0.5" mass="0.06" material="sheet"/>
+      <geom size="0.1535 0.0006 0.0009" pos="0 0.122 0" type="box" contype="0" conaffinity="0" group="2" density="0" material="cardboard_edge"/>
+      <geom size="0.1535 0.0006 0.0009" pos="0 -0.122 0" type="box" contype="0" conaffinity="0" group="2" density="0" material="cardboard_edge"/>
+    </body>
+    <body name="sheet_2" pos="-0.06 -0.33 0.6679">
+      <joint name="sheet_2_free" type="free"/>
+      <geom name="sheet_2_geom" size="0.1535 0.122 0.0015" type="box" friction="0.5" mass="0.06" material="sheet"/>
+      <geom size="0.1535 0.0006 0.0009" pos="0 0.122 0" type="box" contype="0" conaffinity="0" group="2" density="0" material="cardboard_edge"/>
+      <geom size="0.1535 0.0006 0.0009" pos="0 -0.122 0" type="box" contype="0" conaffinity="0" group="2" density="0" material="cardboard_edge"/>
+    </body>
+    <body name="sheet_3" pos="-0.06 -0.33 0.6711">
+      <joint name="sheet_3_free" type="free"/>
+      <geom name="sheet_3_geom" size="0.1535 0.122 0.0015" type="box" friction="0.5" mass="0.06" material="sheet"/>
+      <geom size="0.1535 0.0006 0.0009" pos="0 0.122 0" type="box" contype="0" conaffinity="0" group="2" density="0" material="cardboard_edge"/>
+      <geom size="0.1535 0.0006 0.0009" pos="0 -0.122 0" type="box" contype="0" conaffinity="0" group="2" density="0" material="cardboard_edge"/>
+    </body>
+    <body name="sheet_4" pos="-0.06 -0.33 0.6743">
+      <joint name="sheet_4_free" type="free"/>
+      <geom name="sheet_4_geom" size="0.1535 0.122 0.0015" type="box" friction="0.5" mass="0.06" material="sheet"/>
+      <geom size="0.1535 0.0006 0.0009" pos="0 0.122 0" type="box" contype="0" conaffinity="0" group="2" density="0" material="cardboard_edge"/>
+      <geom size="0.1535 0.0006 0.0009" pos="0 -0.122 0" type="box" contype="0" conaffinity="0" group="2" density="0" material="cardboard_edge"/>
+    </body>
+    <body name="sheet_5" pos="-0.06 -0.33 0.6775">
+      <joint name="sheet_5_free" type="free"/>
+      <geom name="sheet_5_geom" size="0.1535 0.122 0.0015" type="box" friction="0.5" mass="0.06" material="sheet"/>
+      <geom size="0.1535 0.0006 0.0009" pos="0 0.122 0" type="box" contype="0" conaffinity="0" group="2" density="0" material="cardboard_edge"/>
+      <geom size="0.1535 0.0006 0.0009" pos="0 -0.122 0" type="box" contype="0" conaffinity="0" group="2" density="0" material="cardboard_edge"/>
+    </body>
+    <body name="part_0" pos="-0.315 1.38 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_0_free" type="free"/>
+      <geom name="part_0_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_0_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_0_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_0_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_0_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_0_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_0_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_0_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_0_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_0_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_0_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_1" pos="-0.225 1.38 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_1_free" type="free"/>
+      <geom name="part_1_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_1_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_1_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_1_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_1_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_1_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_1_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_1_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_1_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_1_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_1_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_2" pos="-0.135 1.38 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_2_free" type="free"/>
+      <geom name="part_2_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_2_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_2_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_2_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_2_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_2_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_2_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_2_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_2_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_2_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_2_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_3" pos="-0.045 1.38 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_3_free" type="free"/>
+      <geom name="part_3_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_3_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_3_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_3_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_3_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_3_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_3_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_3_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_3_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_3_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_3_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_4" pos="0.045 1.38 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_4_free" type="free"/>
+      <geom name="part_4_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_4_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_4_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_4_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_4_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_4_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_4_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_4_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_4_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_4_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_4_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_5" pos="0.135 1.38 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_5_free" type="free"/>
+      <geom name="part_5_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_5_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_5_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_5_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_5_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_5_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_5_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_5_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_5_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_5_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_5_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_6" pos="0.225 1.38 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_6_free" type="free"/>
+      <geom name="part_6_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_6_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_6_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_6_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_6_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_6_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_6_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_6_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_6_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_6_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_6_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_7" pos="0.315 1.38 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_7_free" type="free"/>
+      <geom name="part_7_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_7_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_7_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_7_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_7_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_7_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_7_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_7_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_7_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_7_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_7_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_8" pos="-0.315 1.48 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_8_free" type="free"/>
+      <geom name="part_8_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_8_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_8_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_8_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_8_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_8_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_8_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_8_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_8_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_8_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_8_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_9" pos="-0.225 1.48 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_9_free" type="free"/>
+      <geom name="part_9_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_9_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_9_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_9_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_9_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_9_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_9_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_9_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_9_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_9_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_9_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_10" pos="-0.135 1.48 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_10_free" type="free"/>
+      <geom name="part_10_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_10_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_10_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_10_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_10_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_10_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_10_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_10_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_10_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_10_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_10_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_11" pos="-0.045 1.48 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_11_free" type="free"/>
+      <geom name="part_11_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_11_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_11_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_11_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_11_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_11_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_11_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_11_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_11_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_11_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_11_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_12" pos="0.045 1.48 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_12_free" type="free"/>
+      <geom name="part_12_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_12_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_12_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_12_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_12_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_12_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_12_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_12_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_12_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_12_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_12_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_13" pos="0.135 1.48 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_13_free" type="free"/>
+      <geom name="part_13_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_13_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_13_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_13_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_13_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_13_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_13_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_13_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_13_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_13_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_13_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_14" pos="0.225 1.48 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_14_free" type="free"/>
+      <geom name="part_14_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_14_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_14_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_14_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_14_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_14_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_14_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_14_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_14_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_14_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_14_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_15" pos="0.315 1.48 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_15_free" type="free"/>
+      <geom name="part_15_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_15_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_15_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_15_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_15_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_15_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_15_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_15_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_15_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_15_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_15_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_16" pos="-0.315 1.58 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_16_free" type="free"/>
+      <geom name="part_16_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_16_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_16_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_16_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_16_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_16_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_16_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_16_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_16_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_16_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_16_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_17" pos="-0.225 1.58 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_17_free" type="free"/>
+      <geom name="part_17_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_17_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_17_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_17_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_17_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_17_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_17_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_17_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_17_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_17_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_17_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_18" pos="-0.135 1.58 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_18_free" type="free"/>
+      <geom name="part_18_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_18_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_18_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_18_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_18_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_18_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_18_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_18_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_18_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_18_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_18_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_19" pos="-0.045 1.58 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_19_free" type="free"/>
+      <geom name="part_19_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_19_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_19_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_19_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_19_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_19_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_19_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_19_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_19_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_19_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_19_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_20" pos="0.045 1.58 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_20_free" type="free"/>
+      <geom name="part_20_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_20_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_20_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_20_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_20_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_20_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_20_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_20_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_20_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_20_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_20_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_21" pos="0.135 1.58 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_21_free" type="free"/>
+      <geom name="part_21_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_21_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_21_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_21_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_21_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_21_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_21_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_21_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_21_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_21_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_21_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_22" pos="0.225 1.58 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_22_free" type="free"/>
+      <geom name="part_22_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_22_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_22_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_22_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_22_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_22_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_22_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_22_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_22_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_22_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_22_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_23" pos="0.315 1.58 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_23_free" type="free"/>
+      <geom name="part_23_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_23_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_23_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_23_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_23_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_23_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_23_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_23_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_23_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_23_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_23_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_24" pos="-0.315 1.68 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_24_free" type="free"/>
+      <geom name="part_24_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_24_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_24_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_24_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_24_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_24_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_24_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_24_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_24_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_24_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_24_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_25" pos="-0.225 1.68 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_25_free" type="free"/>
+      <geom name="part_25_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_25_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_25_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_25_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_25_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_25_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_25_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_25_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_25_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_25_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_25_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_26" pos="-0.135 1.68 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_26_free" type="free"/>
+      <geom name="part_26_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_26_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_26_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_26_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_26_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_26_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_26_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_26_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_26_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_26_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_26_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_27" pos="-0.045 1.68 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_27_free" type="free"/>
+      <geom name="part_27_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_27_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_27_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_27_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_27_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_27_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_27_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_27_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_27_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_27_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_27_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_28" pos="0.045 1.68 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_28_free" type="free"/>
+      <geom name="part_28_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_28_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_28_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_28_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_28_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_28_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_28_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_28_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_28_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_28_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_28_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_29" pos="0.135 1.68 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_29_free" type="free"/>
+      <geom name="part_29_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_29_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_29_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_29_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_29_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_29_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_29_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_29_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_29_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_29_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_29_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_30" pos="0.225 1.68 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_30_free" type="free"/>
+      <geom name="part_30_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_30_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_30_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_30_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_30_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_30_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_30_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_30_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_30_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_30_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_30_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_31" pos="0.315 1.68 0.95" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_31_free" type="free"/>
+      <geom name="part_31_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_31_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_31_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_31_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_31_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_31_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_31_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_31_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_31_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_31_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_31_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_32" pos="-0.315 1.38 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_32_free" type="free"/>
+      <geom name="part_32_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_32_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_32_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_32_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_32_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_32_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_32_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_32_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_32_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_32_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_32_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_33" pos="-0.225 1.38 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_33_free" type="free"/>
+      <geom name="part_33_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_33_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_33_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_33_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_33_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_33_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_33_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_33_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_33_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_33_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_33_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_34" pos="-0.135 1.38 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_34_free" type="free"/>
+      <geom name="part_34_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_34_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_34_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_34_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_34_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_34_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_34_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_34_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_34_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_34_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_34_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_35" pos="-0.045 1.38 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_35_free" type="free"/>
+      <geom name="part_35_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_35_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_35_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_35_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_35_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_35_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_35_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_35_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_35_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_35_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_35_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_36" pos="0.045 1.38 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_36_free" type="free"/>
+      <geom name="part_36_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_36_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_36_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_36_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_36_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_36_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_36_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_36_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_36_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_36_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_36_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_37" pos="0.135 1.38 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_37_free" type="free"/>
+      <geom name="part_37_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_37_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_37_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_37_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_37_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_37_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_37_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_37_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_37_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_37_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_37_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_38" pos="0.225 1.38 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_38_free" type="free"/>
+      <geom name="part_38_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_38_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_38_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_38_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_38_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_38_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_38_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_38_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_38_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_38_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_38_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_39" pos="0.315 1.38 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_39_free" type="free"/>
+      <geom name="part_39_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_39_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_39_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_39_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_39_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_39_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_39_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_39_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_39_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_39_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_39_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_40" pos="-0.315 1.48 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_40_free" type="free"/>
+      <geom name="part_40_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_40_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_40_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_40_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_40_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_40_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_40_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_40_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_40_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_40_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_40_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_41" pos="-0.225 1.48 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_41_free" type="free"/>
+      <geom name="part_41_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_41_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_41_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_41_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_41_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_41_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_41_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_41_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_41_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_41_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_41_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_42" pos="-0.135 1.48 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_42_free" type="free"/>
+      <geom name="part_42_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_42_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_42_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_42_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_42_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_42_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_42_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_42_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_42_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_42_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_42_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_43" pos="-0.045 1.48 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_43_free" type="free"/>
+      <geom name="part_43_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_43_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_43_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_43_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_43_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_43_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_43_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_43_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_43_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_43_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_43_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_44" pos="0.045 1.48 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_44_free" type="free"/>
+      <geom name="part_44_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_44_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_44_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_44_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_44_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_44_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_44_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_44_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_44_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_44_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_44_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_45" pos="0.135 1.48 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_45_free" type="free"/>
+      <geom name="part_45_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_45_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_45_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_45_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_45_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_45_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_45_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_45_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_45_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_45_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_45_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_46" pos="0.225 1.48 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_46_free" type="free"/>
+      <geom name="part_46_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_46_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_46_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_46_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_46_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_46_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_46_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_46_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_46_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_46_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_46_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_47" pos="0.315 1.48 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_47_free" type="free"/>
+      <geom name="part_47_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_47_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_47_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_47_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_47_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_47_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_47_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_47_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_47_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_47_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_47_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_48" pos="-0.315 1.58 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_48_free" type="free"/>
+      <geom name="part_48_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_48_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_48_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_48_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_48_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_48_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_48_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_48_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_48_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_48_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_48_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_49" pos="-0.225 1.58 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_49_free" type="free"/>
+      <geom name="part_49_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_49_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_49_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_49_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_49_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_49_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_49_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_49_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_49_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_49_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_49_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_50" pos="-0.135 1.58 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_50_free" type="free"/>
+      <geom name="part_50_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_50_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_50_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_50_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_50_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_50_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_50_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_50_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_50_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_50_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_50_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_51" pos="-0.045 1.58 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_51_free" type="free"/>
+      <geom name="part_51_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_51_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_51_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_51_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_51_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_51_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_51_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_51_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_51_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_51_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_51_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_52" pos="0.045 1.58 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_52_free" type="free"/>
+      <geom name="part_52_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_52_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_52_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_52_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_52_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_52_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_52_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_52_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_52_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_52_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_52_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_53" pos="0.135 1.58 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_53_free" type="free"/>
+      <geom name="part_53_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_53_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_53_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_53_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_53_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_53_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_53_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_53_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_53_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_53_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_53_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_54" pos="0.225 1.58 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_54_free" type="free"/>
+      <geom name="part_54_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_54_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_54_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_54_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_54_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_54_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_54_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_54_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_54_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_54_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_54_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_55" pos="0.315 1.58 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_55_free" type="free"/>
+      <geom name="part_55_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_55_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_55_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_55_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_55_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_55_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_55_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_55_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_55_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_55_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_55_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_56" pos="-0.315 1.68 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_56_free" type="free"/>
+      <geom name="part_56_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_56_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_56_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_56_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_56_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_56_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_56_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_56_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_56_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_56_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_56_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_57" pos="-0.225 1.68 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_57_free" type="free"/>
+      <geom name="part_57_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_57_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_57_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_57_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_57_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_57_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_57_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_57_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_57_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_57_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_57_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_58" pos="-0.135 1.68 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_58_free" type="free"/>
+      <geom name="part_58_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_58_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_58_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_58_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_58_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_58_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_58_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_58_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_58_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_58_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_58_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+    <body name="part_59" pos="-0.045 1.68 1.05" gravcomp="1">
+      <inertial pos="0 0 0.028" mass="0.18" diaginertia="9.906e-05 9.906e-05 0.00010404"/>
+      <joint name="part_59_free" type="free"/>
+      <geom name="part_59_vis" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="2" density="0" material="part" mesh="bushing"/>
+      <geom name="part_59_col" type="mesh" contype="3" conaffinity="3" group="3" friction="0.5" rgba="0.1 0.1 0.1 1" mesh="bushing_col"/>
+      <geom name="part_59_bore0" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_59_bore1" quat="0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_59_bore2" quat="0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_59_bore3" quat="0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_59_bore4" quat="0 0 0 1" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_59_bore5" quat="-0.382683 0 0 0.92388" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_59_bore6" quat="-0.707107 0 0 0.707107" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <geom name="part_59_bore7" quat="-0.92388 0 0 0.382683" type="mesh" contype="4" conaffinity="4" group="3" rgba="0.3 0.3 0.3 1" density="0" mesh="bore_seg"/>
+      <site name="part_59_top" size="0.003" pos="0 0 0.056" group="4"/>
+    </body>
+  </worldbody>
+
+  <contact>
+    <exclude body1="r/arm" body2="r/link_1"/>
+    <exclude body1="r/link_6" body2="r/left_finger"/>
+    <exclude body1="r/link_6" body2="r/right_finger"/>
+    <exclude body1="r/left_finger" body2="r/right_finger"/>
+    <exclude body1="r/left_finger" body2="r/right_pad"/>
+    <exclude body1="r/left_pad" body2="r/right_finger"/>
+  </contact>
+
+  <equality>
+    <joint joint1="r/left_finger" joint2="r/right_finger"/>
+    <weld name="grasp" body1="r/link_6" body2="part_0" anchor="0 1 0" relpose="2.38 -0.034 -0.4253 0.5 -0.5 -0.5 -0.5" active="false" solref="0.005"/>
+    <weld name="vacuum" body1="cup" body2="sheet_0" anchor="0 1 0" relpose="0.67 -0.2605 -0.275 0.5 -0.5 -0.5 -0.5" active="false" solref="0.005"/>
+  </equality>
+
+  <actuator>
+    <general name="r/joint1" class="r/dm4340" joint="r/joint1" ctrlrange="-2.61799 3.14159"/>
+    <general name="r/joint2" class="r/dm4340" joint="r/joint2" ctrlrange="0 3.66519"/>
+    <general name="r/joint3" class="r/dm4340" joint="r/joint3" ctrlrange="0 3.14159"/>
+    <general name="r/joint4" class="r/dm4310" joint="r/joint4" ctrlrange="-1.69297 1.5708" gainprm="40" biasprm="0 -40"/>
+    <general name="r/joint5" class="r/dm4310" joint="r/joint5" ctrlrange="-1.5708 1.5708"/>
+    <general name="r/joint6" class="r/dm4310" joint="r/joint6" ctrlrange="-2.0944 2.0944"/>
+    <general name="r/gripper" class="r/finger" joint="r/left_finger"/>
+    <general name="cup/cylinder" joint="cup_slide" ctrlrange="0 0.092" ctrllimited="true" forcelimited="true" forcerange="-40 40" input="pos" biastype="affine" gainprm="300" biasprm="0 -300 -15"/>
+    <general name="ejector/cylinder" joint="ejector" ctrlrange="0 0.18" ctrllimited="true" forcelimited="true" forcerange="-30 30" input="pos" biastype="affine" gainprm="400" biasprm="0 -400 -40"/>
+  </actuator>
+
+  <keyframe>
+    <key name="home" qpos="0 1.047 1.047 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -0.06 -0.33 0.6615 1 0 0 0 -0.06 -0.33 0.6647 1 0 0 0 -0.06 -0.33 0.6679 1 0 0 0 -0.06 -0.33 0.6711 1 0 0 0 -0.06 -0.33 0.6743 1 0 0 0 -0.06 -0.33 0.6775 1 0 0 0 -0.315 1.38 0.95 1 0 0 0 -0.225 1.38 0.95 1 0 0 0 -0.135 1.38 0.95 1 0 0 0 -0.045 1.38 0.95 1 0 0 0 0.045 1.38 0.95 1 0 0 0 0.135 1.38 0.95 1 0 0 0 0.225 1.38 0.95 1 0 0 0 0.315 1.38 0.95 1 0 0 0 -0.315 1.48 0.95 1 0 0 0 -0.225 1.48 0.95 1 0 0 0 -0.135 1.48 0.95 1 0 0 0 -0.045 1.48 0.95 1 0 0 0 0.045 1.48 0.95 1 0 0 0 0.135 1.48 0.95 1 0 0 0 0.225 1.48 0.95 1 0 0 0 0.315 1.48 0.95 1 0 0 0 -0.315 1.58 0.95 1 0 0 0 -0.225 1.58 0.95 1 0 0 0 -0.135 1.58 0.95 1 0 0 0 -0.045 1.58 0.95 1 0 0 0 0.045 1.58 0.95 1 0 0 0 0.135 1.58 0.95 1 0 0 0 0.225 1.58 0.95 1 0 0 0 0.315 1.58 0.95 1 0 0 0 -0.315 1.68 0.95 1 0 0 0 -0.225 1.68 0.95 1 0 0 0 -0.135 1.68 0.95 1 0 0 0 -0.045 1.68 0.95 1 0 0 0 0.045 1.68 0.95 1 0 0 0 0.135 1.68 0.95 1 0 0 0 0.225 1.68 0.95 1 0 0 0 0.315 1.68 0.95 1 0 0 0 -0.315 1.38 1.05 1 0 0 0 -0.225 1.38 1.05 1 0 0 0 -0.135 1.38 1.05 1 0 0 0 -0.045 1.38 1.05 1 0 0 0 0.045 1.38 1.05 1 0 0 0 0.135 1.38 1.05 1 0 0 0 0.225 1.38 1.05 1 0 0 0 0.315 1.38 1.05 1 0 0 0 -0.315 1.48 1.05 1 0 0 0 -0.225 1.48 1.05 1 0 0 0 -0.135 1.48 1.05 1 0 0 0 -0.045 1.48 1.05 1 0 0 0 0.045 1.48 1.05 1 0 0 0 0.135 1.48 1.05 1 0 0 0 0.225 1.48 1.05 1 0 0 0 0.315 1.48 1.05 1 0 0 0 -0.315 1.58 1.05 1 0 0 0 -0.225 1.58 1.05 1 0 0 0 -0.135 1.58 1.05 1 0 0 0 -0.045 1.58 1.05 1 0 0 0 0.045 1.58 1.05 1 0 0 0 0.135 1.58 1.05 1 0 0 0 0.225 1.58 1.05 1 0 0 0 0.315 1.58 1.05 1 0 0 0 -0.315 1.68 1.05 1 0 0 0 -0.225 1.68 1.05 1 0 0 0 -0.135 1.68 1.05 1 0 0 0 -0.045 1.68 1.05 1 0 0 0" ctrl="0 1.047 1.047 0 0 0 0.0475 0 0"/>
+  </keyframe>
+</mujoco>

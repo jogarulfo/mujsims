@@ -1,0 +1,21 @@
+[project]
+name = "rempotage-sim"
+version = "0.1.0"
+description = "MuJoCo demo: repotting line, two I2RT YAM arms plant root-balled young trees into bigger pots on an indexing wheel (arm A places the plant, arm B pushes it down and firms the soil), pots go out in rows onto a pallet"
+readme = "README.md"
+authors = [
+    { name = "jogarulfo", email = "jorigal56@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "mujoco>=3.16.0",
+    "pillow>=11",
+]
+
+[project.scripts]
+rempotage-sim = "rempotage_sim:main"
+rempotage-sim-assets = "rempotage_sim:assets_main"
+
+[build-system]
+requires = ["uv_build>=0.12.23,<0.13.0"]
+build-backend = "uv_build"
